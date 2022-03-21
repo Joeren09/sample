@@ -1,0 +1,56 @@
+﻿<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+
+</head>
+
+<header class="header">
+
+    <div class="header-1">
+
+        <a href='@Url.Action("Index","Home")' class="logo"> <i class="fas fa-book"></i> Read N Learn </a>
+
+
+
+        <div class="icons">
+            <div id="search-btn" class="fas fa-search"></div>
+            @*<a href='@Url.Action("Carts","Products")' class="fas fa-shopping-cart"></a>*@
+            @if (Session["user_id"] != null)
+            {
+                @Html.Hidden(Session["user_id"].ToString())
+            }
+
+            @if (Session["email"] != null)
+            {<h2> Welcome @Session["email"].ToString()  </h2> @*@Html.ActionLink("Log Out", "LogOut", "Accounts")*@ <a href='@Url.Action("LogOut","Accounts")' class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="font-size:10px; color:white;">Log Out</a>}
+        else
+        { <a href='@Url.Action("Login","Accounts")' class="fas fa-user"></a>}
+            @*<div id="login-btn" class="fas fa-user"></div>*@
+            @*<a href='@Url.Action("Signup","Accounts")'  class="fas fa-user"></a>*@
+        </div>
+
+    </div>
+    <div class="header-2">
+        <nav class="navbar">
+            @Html.ActionLink("Home", "Index", "Home")
+            @Html.ActionLink("About", "About", "Home")
+            @Html.ActionLink("Books", "BookList", "Home")
+            @if (Session["email"] != null)
+            {
+                @*@Html.ActionLink("Profile", "UserProfile", "Accounts", Session["user_id"])*@
+                <a href=@Url.Action("UserProfile", "Accounts", new { id = Session["user_id"] }) )>Profile</a>
+
+        <a href=@Url.Action("Carts", "CartsItems", new { id = Session["user_id"] }) )>My Cart</a>
+
+
+                
+
+            }
+            </nav>
+    </div>
+
+
+</header>

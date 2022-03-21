@@ -1,0 +1,65 @@
+﻿@model WebApplication3.Models.Tbl_Products
+
+@{
+    ViewBag.Title = "ViewDetails";
+}
+<div>
+    <h4>Tbl_Products</h4>
+    <hr />
+    <dl class="dl-horizontal ">
+        <dt>
+            @Html.DisplayNameFor(model => model.product_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.product_qty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.product_qty)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.product_image)*@
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.product_image)*@
+            @*<img src="@Url.Content(Model.product_image)"  width="500" height="500" />*@
+            <img src="@Url.Content(Model.product_image)" width="500" height="500">
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

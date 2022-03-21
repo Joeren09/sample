@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+@Html.Partial("_Navbar")
+<head>
+    <style>
+
+       /* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 49.33%;
+  padding: 15px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@@media screen and (max-width:600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+    </style>
+    
+</head>
+
+<div class="row">
+    <div class="column">
+        <img src="~/image/ab-01.jpg" style=" width: 100%; height: 500px;">
+    </div>
+
+    <div class="column">
+        <h2 style="font-size: 50px;">About Us</h2>
+
+        <p style="font-size: 25px;">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of It is a long established fact that a reader will be distracted by the </p>
+
+    </div>
+
+</div>

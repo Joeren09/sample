@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Couponfailed";
+}
+
+@Html.Partial("_Navbar")
+
+<style type="text/css">
+    .bs-example {
+        height: 220px;
+    }
+
+    .centerlook {
+        padding-left: 400px;
+        font-weight: bold;
+        width: 1000px;
+    }
+
+    .error {
+        padding-left: 400px;
+        font-weight: bold;
+        width: 1000px;
+        color: red;
+    }
+
+    .loginbtn {
+        padding-left: 500px;
+    }
+
+    .font-style {
+        font-size: large;
+    }
+</style>
+
+<div class="font-style centerlook">
+    <div class="centerlook">
+        <br />
+        <h1>Login Fail</h1>
+        <br />
+        <a href='@Url.Action("coupon","CartsItems")'>go back</a>
+    </div>
+</div>
+
+

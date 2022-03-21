@@ -1,0 +1,132 @@
+﻿@*@model IEnumerable<WebApplication3.Models.Tbl_Cart_Items>*@
+@*@model IEnumerable<WebApplication3.Models.Tbl_Cart_Items>*@
+@{
+    ViewBag.Title = "Carts";
+}
+
+
+@Html.Partial("_Navbar")
+
+
+@using System.Data
+@model DataTable
+
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 15px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4f1c1c;
+            color: white;
+            font-size: 20px;
+        }
+</style>
+<div>
+    <table id="customers">
+        <tr style="background-color:aliceblue">
+            <th>ID</th>
+            <th>Book Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+            <th>Action</th>
+        </tr>
+        @if (Model.Rows.Count>0)
+        {
+            foreach (DataRow dr in Model.Rows)
+            {
+                using (Html.BeginForm("Delete", "CartsItems", new { id = dr["cart_items_id"] }))
+                {
+                <tr>
+                    <td> @dr["cart_items_id"]</td>
+                    <td>  @dr["product_name"]</td>
+                    <td>
+                        @dr["product_qty"]
+                    </td>
+                    <td>   @dr["product_price"]</td>
+                    <td>   @dr["total_val"]</td>
+                    <td>
+                        <input type="submit" value="Delete" onclick="return confirm ('Are you sure to delete record with ID = @dr["cart_items_id"]');" class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="font-size:10px;" />
+
+                    </td>
+                </tr>
+                }
+
+
+            }
+        <tr>
+            <td>Total Cart Amount: </td>
+            <td>@Model.Compute("Sum(total_val)", string.Empty)</td>
+        </tr>
+        <tr>
+            <td>Discount Value: </td>
+            <td>
+                @*@ViewBag.discount*@
+                @if (Session["discount_val"] != null)
+                {
+                    <label> @Session["discount_val"].ToString()</label>
+                }
+                else
+                {
+                    <a href=@Url.Action("coupon", "CartsItems") class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:50%; font-size:15px;"> Activate Coupon </a>
+                }
+
+            </td>
+
+        </tr>
+        <tr>
+            <td>Total Amount: </td>
+            <td>
+                @*@ViewBag.discount*@
+                @if (Session["discount_val"] != null)
+                {
+                    Convert.ToDecimal(Model.Compute("Sum(total_val)", string.Empty));
+                    decimal valu = (Convert.ToDecimal(Model.Compute("Sum(total_val)", string.Empty)) - (Convert.ToDecimal(Model.Compute("Sum(total_val)", string.Empty)) * Convert.ToDecimal(Session["discount_val"])));
+                    <label> @valu</label>
+                    @*<label> @ViewBag.discount</label>*@
+                }
+                else
+                {
+                    @Model.Compute("Sum(total_val)", string.Empty)
+                }
+
+            </td>
+        </tr>
+        }
+            else
+            {
+                <tr>
+                    <td colspan="6">No Items</td>
+                    </tr>
+            }
+
+    </table>
+
+    <a href=@Url.Action("BookList", "Home") class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:15%; font-size:15px;"> Back to Book </a>
+    @if (Model.Rows.Count > 0)
+    {
+    <a href=@Url.Action("Cpayment", "CartsItems", new { id = Convert.ToInt32(Session["user_id"]) }) class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:15%; font-size:15px;"> Print Invoice </a>
+    }
+</div>
+

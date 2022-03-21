@@ -1,0 +1,102 @@
+﻿@model WebApplication3.Models.Tbl_Products
+@{
+    ViewBag.Title = "CartDetails";
+}
+
+@Html.Partial("_Navbar")
+
+<style>
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 49.33%;
+        padding: 15px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @@media screen and (max-width:600px) {
+        .column {
+            width: 100%;
+        }
+    }
+    .dl-horizontal dt {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .dl-horizontal dd {
+        font-size: 20px;
+    }
+</style>
+<div class="row">
+    @using (Html.BeginForm("CartDetails", "CartsItems", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.product_id)
+        @Html.Hidden(Session["user_id"].ToString())
+        <h2>Book Details</h2>
+        <div class="column">
+            <img src="@Url.Content(Model.product_image)" style="width: 50%; height: 50%;" />
+        </div>
+
+        <div class="column">
+            <div>
+                <dl class="dl-horizontal">
+
+                    <dt>
+                        Product Name
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_name)
+                        @Html.HiddenFor(model => model.product_name)
+                    </dd>
+
+                    <dt>
+                        Genre
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.category_id)
+                    </dd>
+
+                    <dt>
+                        Price
+                    </dt>
+
+                    <dd>
+                        @Html.DisplayFor(model => model.product_price)
+                        @Html.HiddenFor(model => model.product_price)
+                    </dd>
+
+                    <dt>
+                        Quantity
+                    </dt>
+
+                    <dd>
+                        <select name="product_qty" >
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </dd>
+
+                    <dt>
+                        @*<a href="@Url.Action("CartDetails","CartsItems")" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Add to Cart</a>*@
+                        <button class="btn btn-out btn-success btn-square btn-main mt-2" role="button" value="Submit" type="submit">Add to Cart</button>
+                    </dt>
+
+                </dl>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbReadNLearnModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Tbl_Admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tbl_Cart">
+    <Key>
+      <PropertyRef Name="cart_id" />
+    </Key>
+    <Property Name="cart_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_Cart_Items">
+    <Key>
+      <PropertyRef Name="cart_items_id" />
+    </Key>
+    <Property Name="cart_items_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cart_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="product_id" Type="int" />
+    <Property Name="product_qty" Type="int" />
+  </EntityType>
+  <EntityType Name="Tbl_Categories">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tbl_Coupons">
+    <Key>
+      <PropertyRef Name="coupon_id" />
+    </Key>
+    <Property Name="coupon_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="coupon_name" Type="varchar" MaxLength="100" />
+    <Property Name="discount_val" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="expiry_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Tbl_Events">
+    <Key>
+      <PropertyRef Name="event_id" />
+    </Key>
+    <Property Name="event_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="event_name" Type="varchar" MaxLength="100" />
+    <Property Name="event_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Tbl_Orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cart_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="order_date" Type="datetime" />
+    <Property Name="delivery_date" Type="datetime" />
+    <Property Name="coupon_id" Type="int" />
+    <Property Name="bill_amount" Type="int" />
+    <Property Name="payment_method" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tbl_Products">
+    <Key>
+      <PropertyRef Name="product_id" />
+    </Key>
+    <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="product_name" Type="varchar" MaxLength="100" />
+    <Property Name="category_id" Type="int" />
+    <Property Name="product_price" Type="int" />
+    <Property Name="product_qty" Type="int" Nullable="false" />
+    <Property Name="product_image" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Tbl_User">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="100" />
+    <Property Name="date_of_reg" Type="varchar" MaxLength="100" />
+    <Property Name="contact_no" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK__Tbl_Cart___cart___3C69FB99">
+    <End Role="Tbl_Cart" Type="Self.Tbl_Cart" Multiplicity="0..1" />
+    <End Role="Tbl_Cart_Items" Type="Self.Tbl_Cart_Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Cart">
+        <PropertyRef Name="cart_id" />
+      </Principal>
+      <Dependent Role="Tbl_Cart_Items">
+        <PropertyRef Name="cart_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Cart___produ__3E52440B">
+    <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="0..1" />
+    <End Role="Tbl_Cart_Items" Type="Self.Tbl_Cart_Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Tbl_Cart_Items">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+warning 6035: The relationship 'FK__Tbl_Cart___produ__3F466844' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="FK__Tbl_Cart___produ__3F466844" />-->
+  <Association Name="FK__Tbl_Cart___user___3D5E1FD2">
+    <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+    <End Role="Tbl_Cart_Items" Type="Self.Tbl_Cart_Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Tbl_Cart_Items">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Cart__produc__398D8EEE">
+    <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="0..1" />
+    <End Role="Tbl_Cart" Type="Self.Tbl_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Products">
+        <PropertyRef Name="product_id" />
+      </Principal>
+      <Dependent Role="Tbl_Cart">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Cart__user_i__38996AB5">
+    <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+    <End Role="Tbl_Cart" Type="Self.Tbl_Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Tbl_Cart">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Order__cart___440B1D61">
+    <End Role="Tbl_Cart" Type="Self.Tbl_Cart" Multiplicity="0..1" />
+    <End Role="Tbl_Orders" Type="Self.Tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Cart">
+        <PropertyRef Name="cart_id" />
+      </Principal>
+      <Dependent Role="Tbl_Orders">
+        <PropertyRef Name="cart_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Order__coupo__45F365D3">
+    <End Role="Tbl_Coupons" Type="Self.Tbl_Coupons" Multiplicity="0..1" />
+    <End Role="Tbl_Orders" Type="Self.Tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Coupons">
+        <PropertyRef Name="coupon_id" />
+      </Principal>
+      <Dependent Role="Tbl_Orders">
+        <PropertyRef Name="coupon_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Order__user___44FF419A">
+    <End Role="Tbl_User" Type="Self.Tbl_User" Multiplicity="0..1" />
+    <End Role="Tbl_Orders" Type="Self.Tbl_Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_User">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="Tbl_Orders">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Tbl_Produ__categ__35BCFE0A">
+    <End Role="Tbl_Categories" Type="Self.Tbl_Categories" Multiplicity="0..1" />
+    <End Role="Tbl_Products" Type="Self.Tbl_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Categories">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="Tbl_Products">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbReadNLearnModelStoreContainer">
+    <EntitySet Name="Tbl_Admin" EntityType="Self.Tbl_Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Cart" EntityType="Self.Tbl_Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Cart_Items" EntityType="Self.Tbl_Cart_Items" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Categories" EntityType="Self.Tbl_Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Coupons" EntityType="Self.Tbl_Coupons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Events" EntityType="Self.Tbl_Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Orders" EntityType="Self.Tbl_Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Products" EntityType="Self.Tbl_Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_User" EntityType="Self.Tbl_User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Tbl_Cart___cart___3C69FB99" Association="Self.FK__Tbl_Cart___cart___3C69FB99">
+      <End Role="Tbl_Cart" EntitySet="Tbl_Cart" />
+      <End Role="Tbl_Cart_Items" EntitySet="Tbl_Cart_Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Cart___produ__3E52440B" Association="Self.FK__Tbl_Cart___produ__3E52440B">
+      <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+      <End Role="Tbl_Cart_Items" EntitySet="Tbl_Cart_Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Cart___user___3D5E1FD2" Association="Self.FK__Tbl_Cart___user___3D5E1FD2">
+      <End Role="Tbl_User" EntitySet="Tbl_User" />
+      <End Role="Tbl_Cart_Items" EntitySet="Tbl_Cart_Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Cart__produc__398D8EEE" Association="Self.FK__Tbl_Cart__produc__398D8EEE">
+      <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+      <End Role="Tbl_Cart" EntitySet="Tbl_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Cart__user_i__38996AB5" Association="Self.FK__Tbl_Cart__user_i__38996AB5">
+      <End Role="Tbl_User" EntitySet="Tbl_User" />
+      <End Role="Tbl_Cart" EntitySet="Tbl_Cart" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Order__cart___440B1D61" Association="Self.FK__Tbl_Order__cart___440B1D61">
+      <End Role="Tbl_Cart" EntitySet="Tbl_Cart" />
+      <End Role="Tbl_Orders" EntitySet="Tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Order__coupo__45F365D3" Association="Self.FK__Tbl_Order__coupo__45F365D3">
+      <End Role="Tbl_Coupons" EntitySet="Tbl_Coupons" />
+      <End Role="Tbl_Orders" EntitySet="Tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Order__user___44FF419A" Association="Self.FK__Tbl_Order__user___44FF419A">
+      <End Role="Tbl_User" EntitySet="Tbl_User" />
+      <End Role="Tbl_Orders" EntitySet="Tbl_Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Tbl_Produ__categ__35BCFE0A" Association="Self.FK__Tbl_Produ__categ__35BCFE0A">
+      <End Role="Tbl_Categories" EntitySet="Tbl_Categories" />
+      <End Role="Tbl_Products" EntitySet="Tbl_Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

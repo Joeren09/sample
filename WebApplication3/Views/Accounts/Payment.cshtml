@@ -1,0 +1,145 @@
+﻿@{
+    ViewBag.Title = "Payment";
+}
+
+<style>
+
+
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 49.33%;
+        padding: 15px;
+    }
+    td{
+        padding: 10px;
+    }
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @@media screen and (max-width:600px) {
+        .column {
+            width: 100%;
+        }
+    }
+</style>
+@Html.Partial("_Navbar")
+<div class="row" style="background: #d9d0d0;">
+    <div class="column" style="width: 60%;">
+        <form>
+            <table style=" align-items: center; width: 100%; max-width: 100%; border-radius: 20px; background: white;">
+                <tr>
+                    <th colspan="4">
+                        <h2 style="font-size: 30px; background: darkred; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px; }">Payment Form</h2>
+                    </th>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Name: </label>
+                    </td>
+                    <td colspan="2">
+                        <input type="text" placeholder="Insert your Name Here" style="font-size: 20px; border-bottom-color: darkred; width: 100%; background-color: #f2ecec;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Address: </label>
+                    </td>
+                    <td colspan="2">
+                        <input type="text" placeholder="Insert your Address Here" style="font-size: 20px; border-bottom-color: darkred; width: 100%; background-color: #f2ecec;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:1%;">
+                        <label style="font-size:20px;">Age: </label>
+                    </td>
+                    <td style="width:1%;">
+                        <input type="number" placeholder="0" style="font-size: 20px; border-bottom-color: darkred; background-color: #f2ecec; width:100%;">
+                    </td>
+                    <td style="width:2%;">
+                        <label style="font-size:20px;">Gender: </label>
+                    </td>
+                    <td style="width:5%;">
+                        <select name="gender" style="font-size:20px;">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Birthday</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="date" id="bday" name="bday">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Contact No.</label>
+                    </td>
+                    <td colspan="2">
+                        <input type="number" style="font-size: 20px; border-bottom-color: darkred; background-color: #f2ecec; width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Email: </label>
+                    </td>
+                    <td colspan="2">
+                        <input type="text" placeholder="Insert your Email" style="font-size: 20px; border-bottom-color: darkred; width: 100%; background-color: #f2ecec;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <label style="font-size:20px;">Amount: </label>
+                    </td>
+                    <td colspan="2">
+                        <input type="number" style="font-size: 20px; border-bottom-color: darkred; width: 100%; background-color: #f2ecec;">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" align="center">
+                        <a href="#" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Confirm</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <div class="column" style="width: 40%; ">
+        <table style="align-items: center; width: 100%; max-width: 100%; border-radius: 20px; background: white;">
+            <tr>
+                <th style="font-size: 20px; color: white; background: darkred; border-top-left-radius: 15px;">Carts</th>
+                <th style="font-size: 20px; color: white; background: darkred; border-top-right-radius: 15px;">Total: 3</th>
+            </tr>
+            <tr>
+                <td style="font-size:20px">To Kill A Mocking Bird</td>
+                <td style="font-size:20px">$15</td>
+            </tr>
+            <tr>
+                <td style="font-size:20px">The Big Sleep</td>
+                <td style="font-size:20px">$15</td>
+            </tr>
+            <tr>
+                <td style="font-size:20px">East of Eden</td>
+                <td style="font-size:20px">$15</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="font-size: 20px; border-top-color: red; border-top-color: #5c0000; border-top-style: solid;"></td>
+            </tr>
+            <tr>
+                <td style="font-size:20px">Total:</td>
+                <td style="font-size:20px">$60</td>
+            </tr>
+        </table>
+</div>
+
+
+</div>

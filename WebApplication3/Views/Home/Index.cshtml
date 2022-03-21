@@ -1,0 +1,162 @@
+﻿@model IEnumerable<WebApplication3.Models.Tbl_Coupons>
+@{
+    ViewBag.Title = "Home Page";
+}
+@using System.Globalization
+@Html.Partial("_Navbar")
+<head>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: auto auto auto;
+            background-color: #610808;
+            padding: 10px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<section class="home" id="home">
+
+    <div class="row">
+
+        <div class="content">
+            <h3>upto 75% off</h3>
+            <p>In this month we provide newly release book , Any Categories you like. Starting from this month until the end of the year, you dont need to rush for our Books, its always available here right now.</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+
+        <div class="swiper books-slider">
+            <div class="swiper-wrapper">
+                <a href="#" class="swiper-slide"><img src="~/image/book-1.png" alt="" runat="server" /></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-2.png" alt="" runat="server"></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-3.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-4.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-5.png" alt=""></a>
+                <a href="#" class="swiper-slide"><img src="~/image/book-6.png" alt=""></a>
+            </div>
+            <img src="~/image/stand.png" class="stand" alt="">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- icons section starts  -->
+
+<section class="icons-container">
+
+    <div class="icons">
+        <i class="fas fa-shipping-fast"></i>
+        <div class="content">
+            <h3>free shipping</h3>
+            <p>order over $100</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-lock"></i>
+        <div class="content">
+            <h3>secure payment</h3>
+            <p>100 secure payment</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-redo-alt"></i>
+        <div class="content">
+            <h3>easy returns</h3>
+            <p>10 days returns</p>
+        </div>
+    </div>
+
+    <div class="icons">
+        <i class="fas fa-headset"></i>
+        <div class="content">
+            <h3>24/7 support</h3>
+            <p>call us anytime</p>
+        </div>
+    </div>
+
+</section>
+
+
+<!-- icons section ends -->
+<!-- newsletter section starts -->
+
+<section class="newsletter">
+
+    <form action="">
+        <h3>subscribe for latest updates</h3>
+        <input type="email" name="" placeholder="enter your email" id="" class="box">
+        <input type="submit" value="subscribe" class="btn">
+    </form>
+
+</section>
+
+<!-- newsletter section ends -->
+<!-- deal section starts  -->
+@*<section class="deal">
+
+        <div class="content">
+            <h3>deal of the day</h3>
+            <h1>upto 50% off</h1>
+            <p>Mema there, Mema here and Mema everywhere!!! but this one this is not Mema, this is the deal of the day. Grab this now or else you are MEMA.</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+
+        <div class="image">
+            <img src="~/image/deal-img.jpg" alt="">
+        </div>
+
+    </section>*@
+<div class="grid-container">
+    @foreach (var item in Model)
+    {
+        if (DateTime.Parse(item.Tbl_Events.E_ExpireDate.ToString()) > DateTime.Now)
+        {
+    <div class="grid-item">
+        <h1>Coupons</h1>
+        <label style="font-size:20px; border-bottom-style:solid;">
+            @Html.DisplayFor(modelItem => item.coupon_name)
+        </label>
+        <br>
+        <label style="font-size: 15px">
+            @Html.DisplayFor(modelItem => item.Tbl_Events.event_name)
+        </label>
+        <br>
+        <label style="font-size:25px;">
+            @Html.DisplayFor(modelItem => item.discount_val) Off Discount
+        </label>
+        @if (Session["email"] != null)
+        {
+            <br>
+        <label style="font-size: 15px">
+            @Html.DisplayFor(modelItem => item.couponcode)
+        </label>
+        }
+
+    </div>
+        @*<div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+        <div class="grid-item">9</div>*@
+        }
+    }
+    </div>
+
+<!-- deal section ends -->
+<div class="row">
+
+</div>

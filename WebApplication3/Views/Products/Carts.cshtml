@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "Carts";
+}
+<head>
+    <style>
+
+        th {
+            font-size: 20px;
+            color: #6d6a6a;
+            border-bottom-style: double;
+            border-color: #dae2e2;
+        }
+
+        img {
+            height: 180px;
+        }
+
+        p,
+        label {
+            font: 1rem 'Fira Sans', sans-serif;
+        }
+
+        input {
+            margin: .4rem;
+        }
+
+            input[type=checkbox] {
+                /* Double-sized Checkboxes */
+                -ms-transform: scale(2); /* IE */
+                -moz-transform: scale(2); /* FF */
+                -webkit-transform: scale(2); /* Safari and Chrome */
+                -o-transform: scale(2); /* Opera */
+                transform: scale(2);
+                padding: 10px;
+            }
+
+        /* Might want to wrap a span around your checkbox text */
+        .checkboxtext {
+            /* Checkbox text */
+            font-size: 110%;
+            display: inline;
+        }
+
+
+        .coup-grp {
+            background: white;
+            height: 150px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .info-prod {
+            height: 350px;
+            padding: 10px;
+            background: white;
+            border-radius: 20px;
+            width: 100%;
+            font-size: 25px;
+        }
+
+            .info-prod label {
+                font-size: 20px;
+            }
+
+
+
+        /* Create three equal columns that floats next to each other */
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @@media screen and (max-width:600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+@Html.Partial("_Navbar")
+<div class="row" style="background: #8D6666">
+    <div class="column" style="width: 60%;">
+        <table style=" background: #FFFFFF; width: 700px; border-radius: 20px; max-width:100%;">
+            <tr>
+                <th colspan="2">Products</th>
+                <th>Quatity</th>
+                <th colspan="2">Price</th>
+            </tr>
+            <tr>
+                <td align="center">
+                    <br>
+                    <img src="~/image/cb-1.jpg">
+                    <br>
+                </td>
+                <td align="center">
+                    <h2>To Kill A Mocking Bird</h2>
+                    <p>Classic</p>
+                </td>
+                <td align="center">
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </td>
+                <td align="center" style="font-size:15px;">
+                    <div class="price-wrap"> <var class="price">$10.00</var> <br><small class="text-muted"> $9.20 each </small> </div>
+
+                </td>
+                <td align="right">
+                    <a href="#" class="btn" style="width:80%;">add to payment</a><br>
+                    <a href="#" class="btn" style="width:80%;">Remove</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <br>
+                    <img src="~/image/cb-2.jpg">
+                    <br>
+                </td>
+                <td align="center">
+                    <h2>The Big Sleep</h2>
+                    <p>Classic</p>
+                </td>
+                <td align="center">
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </td>
+                <td align="center" style="font-size:15px;">
+                    <div class="price-wrap"> <var class="price">$10.00</var> <br><small class="text-muted"> $9.20 each </small> </div>
+
+                </td>
+                <td align="right">
+                    <a href="#" class="btn" style="width:80%;">add to payment</a><br>
+                    <a href="#" class="btn" style="width:80%;">Remove</a>
+
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <br>
+                    <img src="~/image/cb-3.jpg">
+                    <br>
+                </td>
+                <td align="center">
+                    <h2>East of Eden</h2>
+                    <p>Classic</p>
+                </td>
+                <td align="center">
+                    <select class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </td>
+                <td align="center" style="font-size:15px;">
+                    <div class="price-wrap"> <var class="price">$10.00</var> <br><small class="text-muted"> $9.20 each </small> </div>
+
+                </td>
+                <td align="right">
+                    <a href="#" class="btn" style="width:80%;">add to payment</a><br>
+                    <a href="#" class="btn" style="width:80%;">Remove</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="column">
+        <div class="card-body">
+            <form>
+                <div class="coup-grp">
+                    <label style="font-size:20px;">Have coupon?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control coupon" name="" placeholder="Coupon code" style="height: 20px; border-bottom: groove; font-size: 17px; display: flex; padding: 10px; margin: 20px;">
+                        <span class="input-group-append"> <button class="btn btn-primary btn-apply coupon" style=" display: flex; position: relative; left: 50%;">Apply</button> </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br>
+        @*<div class="info-prod">
+                <label>Total Price:</label><label>$20.99</label><br>
+                <label>Discount:</label><label style="color:red;">$5.00</label><br>
+                <label>Total Value:</label><label>$15.99</label><br>
+            </div>*@
+        <table class="info-prod">
+            <tr>
+                <td style="height:20%">Total Price:</td>
+                <td>$20.99</td>
+            </tr>
+            <tr>
+                <td style="height:20%;">Discount:</td>
+                <td style="color:darkred;">-$5.00</td>
+            </tr>
+            <tr>
+                <td style="height:20%;">Total Value:</td>
+                <td>$15.99</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="border-top-style: groove; height: 20%;" align="center">
+                    <hr> <a href=@Url.Action("Payment","Accounts") class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:60%"> Make Purchase </a> <a href="#" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

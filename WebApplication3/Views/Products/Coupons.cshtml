@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "Coupons";
+}
+<head>
+    <style>
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 15px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @@media screen and (max-width:600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+@Html.Partial("_Navbar")
+
+
+<div class="row" style="background: #350a0a">
+    <div class="column">
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>Limited Offer</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-01.jpg" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">20% Limited Offer</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: Nov. 20, 2023</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: 2PH78SM9</label>
+                </td>
+            </tr>
+        </Table>
+        <br>
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>Student</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-02.jpg" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">50% Student Discount</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: Dec. 27, 2023</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: DM9R4P9X</label>
+                </td>
+            </tr>
+        </Table>
+
+
+
+    </div>
+
+    <div class="column">
+
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>Membership</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-03.jpg" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">30% Member Discount</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: Sept. 10, 2023</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: LJ7YT55N</label>
+                </td>
+            </tr>
+        </Table>
+        <br>
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>Senior Citizen</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-04.png" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">50% Senior Discount</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: Jan. 19, 2024</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: AX2198D7</label>
+                </td>
+            </tr>
+        </Table>
+
+    </div>
+
+    <div class="column">
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>100th Book</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-05.jpg" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">100% Limited Offer</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: Oct. 19, 2023</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: MH65GB09</label>
+                </td>
+            </tr>
+        </Table>
+        <br>
+        <Table style="border-radius: 20px; background: #ffffff; padding: 10px; margin: 10px; max-width:100%;">
+            <tr>
+                <th>
+                    <h2>First Time Reader</h2>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <img src="~/image/bn-06.png" style="width: 300px; height: 100px;">
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <label style="font-size:20px;">50% First Time Reader</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Expiry date: None</label>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background: #c7bdbd;">
+                    <label style="font-size:15px;">Promo Code: 1ERF564A</label>
+                </td>
+            </tr>
+        </Table>
+
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebApplication3.Models.Tbl_Coupons>
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Partial("_AdminNav")
+
+
+
+
+@using System.Globalization
+
+
+<style>
+    #customers {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        #customers td, #customers th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            font-size: 15px;
+        }
+
+        #customers tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #customers tr:hover {
+            background-color: #ddd;
+        }
+
+        #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4f1c1c;
+            color: white;
+            font-size: 20px;
+        }
+</style>
+<div>
+    <table id="customers">
+        <tr style="background-color:aliceblue">
+            <th>Coupon ID</th>
+            <th>Coupon Name</th>
+            <th>Discount</th>
+            <th>Event Name</th>
+            <th>Coupon Code</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+        
+    <tr>
+        <td>  @Html.DisplayFor(modelItem => item.coupon_id)</td>
+        <td>  @Html.DisplayFor(modelItem => item.coupon_name)</td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.discount_val)*@
+
+            @Html.DisplayFor(modelItem => item.discount_val)
+        </td>
+        <td>   @Html.DisplayFor(modelItem => item.Tbl_Events.event_name)</td>
+        <td>   @Html.DisplayFor(modelItem => item.couponcode)</td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.coupon_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.coupon_id })
+
+        </td>
+    </tr>
+            
+        }
+    </table>
+    <a href=@Url.Action("Add","Coupons") class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:15%; font-size:15px;"> Add Coupons </a>
+</div>

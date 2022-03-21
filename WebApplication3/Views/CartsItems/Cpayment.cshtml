@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "Cpayment";
+}
+
+@using System.Data
+@model DataTable
+<style>
+    @@media print {
+        .noPrint {
+            display: none;
+        }
+    }
+
+    h1 {
+        color: #f6f6;
+    }
+
+    .t-form table {
+        border-style: solid;
+        border-color: black;
+        width: 900px;
+        border-radius:20px;
+    }
+
+    .t-form td {
+   /*     border-style: solid;*/
+        border-color: black;
+        width: 400px;
+        font-size: 20px;    
+    }
+</style>
+<center>
+    <div class="t-form">
+        <table>
+            <tr>
+                <td colspan="5" align="center" style="background: #6f0a0a; color: white;border-top-left-radius:20px; border-top-right-radius:20px;">Read N Learn</td>
+            </tr>
+            <tr>
+                <td colspan="2">Name:</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">Address:</td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td colspan="2">Email:</td>
+                <td></td>
+                <td>Contact No:</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" align="center" style="background: #6f0a0a; color: white;">Cart Details</td>
+            </tr>
+            <tr>
+                <td>ID</td>
+                <td>Book Title</td>
+                <td>Quantity</td>
+                <td>Price</td>
+                <td>Total Price</td>
+            </tr>
+
+            @foreach (DataRow dr in Model.Rows)
+            {
+        <tr>
+            <td> @dr["cart_items_id"]</td>
+            <td>  @dr["product_name"]</td>
+            <td>
+                @dr["product_qty"]
+            </td>
+            <td>   @dr["product_price"]</td>
+            <td>   @dr["total_val"]</td>
+        </tr>
+            }
+        <tr>
+            <td colspan="2">Total Cart Amount:</td>
+            <td colspan="3">@Model.Compute("Sum(total_val)", string.Empty)</td>
+        </tr>
+        <tr>
+            <td colspan="2">Discount Value</td>
+            <td colspan="3">
+
+                @if (Session["discount_val"] != null)
+                {
+                    <label> @Session["discount_val"].ToString()</label>
+                }
+                else
+                {
+                    <label>0.00</label>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">Total Amount:</td>
+            <td colspan="3">
+                @*@ViewBag.discount*@
+                @if (Session["discount_val"] != null)
+                {
+                    <label> @ViewBag.discount</label>
+                }
+                else
+                {
+                    @Model.Compute("Sum(total_val)", string.Empty)
+                }
+            </td>
+        </tr>
+            <tr>
+                <td colspan="5" align="center" valign="bottom" style="border-bottom-style:solid; height:100px;">&nbsp;&nbsp;&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td colspan="5" align="center" valign="bottom" style="border-top-style:solid;">Printed Name With Signature</td>
+            </tr>
+            </table>
+    </div>
+</center>
+<button onclick="window.print();" class="noPrint">
+    Print Form
+</button>
+<a href=@Url.Action("Carts", "CartsItems") class="noPrint" data-abc="true" style="width:15%; font-size:15px;"> Back to Book </a>

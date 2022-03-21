@@ -1,0 +1,72 @@
+﻿@model IEnumerable<WebApplication3.Models.Tbl_Products>
+@{
+    ViewBag.Title = "BookList";
+}
+@Html.Partial("_Navbar")
+<!-- featured section starts  -->
+<style>
+    .contains {
+        background-color: darkred;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+    .c-table {
+        background: white;
+        padding: 20px;
+        width: 90%;
+        height: 100%;
+        border-radius: 20px;
+    }
+    .c-table th{
+        font-size:20px;
+        background:darkred;
+        color:white;
+    }
+    .c-table td{
+        font-size:15px;
+        width:14%;
+        text-align: -webkit-center;
+    }
+    .c-table td img{
+        height:200px;
+    }
+</style>
+<div class="contains">
+    <table class="c-table" align="center">
+        <tr>
+            <th>Book ID</th>
+            <th></th>
+            <th>Title</th>
+            <th>Category</th>
+            @*<th>Quantity</th>*@
+            <th>Price</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            if (item.product_qty>0) { 
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.product_id)</td>
+                <td align="center"><img src="@Url.Content(item.product_image)"/></td>
+                <td style="font-weight:bold;">@Html.DisplayFor(modelItem => item.product_name)</td>
+                <td> @Html.DisplayFor(modelItem => item.Tbl_Categories.category_name)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.product_qty)</td>*@
+                <td>@Html.DisplayFor(modelItem => item.product_price)</td>
+                <td>
+                    @if (Session["email"] != null)
+                    {<a href=@Url.Action("CartDetails","CartsItems", new { id = item.product_id }) class="btn btn-out btn-primary btn-square btn-main" data-abc="true" style="width:60%"> Add to Cart </a>}
+                    else
+                    {
+                        <a href="@Url.Action("Login","Accounts")" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Login</a>
+                    }
+
+
+                </td>
+            </tr>
+            }
+        }
+        </table>
+</div>

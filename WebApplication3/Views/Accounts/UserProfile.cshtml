@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "UserProfile";
+
+}
+@Html.Partial("_Navbar")
+
+@using System.Data
+@model DataTable
+    <style>
+    /* Create three equal columns that floats next to each other */
+    .column {
+      float: left;
+      width: 49.33%;
+      padding: 15px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    @@media screen and (max-width:600px) {
+      .column {
+        width: 100%;
+      }
+    }
+    </style>
+    <div class="row" style=" background: linear-gradient(122deg, #fc0000, #05aaea);">
+        <div class="column" style="background: white; padding: 20px; margin: 30px; border-radius: 50px; width: 30%; display: flex; justify-content: center;">
+            @foreach (DataRow dr in Model.Rows)
+            {
+                <table>
+                    <tr>
+                        <td align="center" valign="middle" style="width: 100%;">
+                            <img src="~/image/prf0-02.png" style="height: 200px; width: 200px; border-radius: 100px; border-style: solid; border-color: darkred; border-width: 5px; }">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label style="font-size:30px;"><b>@dr["email"]</b></label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left" style="border-top-style:solid; border-color:darkred;">
+                            <label style="font-size:20px;"><b>User ID:</b> @dr["user_id"]</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="left">
+                            <label style="font-size:20px;"><b>Contact No:</b>@dr["contact_no"]  </label>
+
+                        </td>
+                    </tr>
+                </table>
+            }
+            </div>
+
+        <div class="column" style="background: white; padding: 20px; margin: 30px; border-radius: 50px; width: 60%; display: flex; justify-content: center;">
+            <table >
+
+                    <th align="left" style="width: 100%; font-size:20px;">Actions</th>
+              
+                    <td  align="center">
+                        <a href="@Url.Action("UpdateUser", "Accounts", new { id = Convert.ToInt32(Session["user_id"]) })" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Update Profile</a>
+                    </td>
+    </table>
+        </div>
+
+    </div>
